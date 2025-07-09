@@ -1,4 +1,4 @@
-const CACHE_NAME = 'foodhub-v1';
+const CACHE_NAME = 'StreetNaan-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
@@ -91,7 +91,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('FoodHub', options)
+    self.registration.showNotification('StreetNaan', options)
   );
 });
 

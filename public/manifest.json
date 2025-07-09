@@ -1,6 +1,6 @@
 {
-  "name": "FoodHub - Food Delivery Service",
-  "short_name": "FoodHub",
+  "name": "StreetNaan - Food Service",
+  "short_name": "StreetNaan",
   "description": "Order delicious food from your favorite restaurants",
   "start_url": "/",
   "display": "standalone",

@@ -26,7 +26,7 @@ const PWAInstallPrompt = () => {
           <Download className="h-5 w-5 text-white" />
         </div>
         <div className="flex-1">
-          <h3 className="text-white font-semibold mb-1">Install FoodHub</h3>
+          <h3 className="text-white font-semibold mb-1">Install StreetNaan</h3>
           <p className="text-gray-300 text-sm mb-3">
             Install our app for faster access and offline ordering!
           </p>

@@ -28,7 +28,7 @@ export const registerSW = async () => {
 // Show update notification
 const showUpdateNotification = () => {
   if (Notification.permission === 'granted') {
-    new Notification('FoodHub Update Available', {
+    new Notification('Street Naan Update Available', {
       body: 'A new version is available. Refresh to update.',
       icon: '/icons/icon-192x192.png',
       tag: 'update-available'
