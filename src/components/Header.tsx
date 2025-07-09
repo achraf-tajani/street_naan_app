@@ -15,7 +15,10 @@ const Header: React.FC<HeaderProps> = ({ onCartClick }) => {
       <div className="flex items-center space-x-8">
         <div className="flex items-center space-x-2">
           <Utensils className="h-8 w-8 text-green-500" />
-          <span className="text-xl font-bold">Naan Street</span>
+  <span className="text-xl font-extrabold">
+    <span className="text-gray-900 dark:text-white tracking-wide">Street</span>{" "}
+    <span className="text-green-500 italic">Naan</span>
+  </span>
         </div>
       </div>
       
