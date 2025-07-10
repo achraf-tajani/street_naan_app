@@ -1,0 +1,87 @@
+🏗️ Architecture générale
+Framework : React + TypeScript + Vite
+Styling : Tailwind CSS avec thème sombre/clair
+État global : Context API pour le panier et les thèmes
+PWA : Application web progressive avec service worker
+🎨 Interface utilisateur
+Header
+Logo "Naan Street" avec icône
+Bouton de basculement thème sombre/clair
+Panier avec compteur d'articles
+Sidebar de navigation
+7 catégories avec emojis : Naan, Burgers, Tacos, Hot Dog, Boissons, Desserts, Sauces
+Navigation par onglets avec tooltips
+Cartes produits
+Design premium avec images de fond Pexels
+Badges emoji, prix et calories
+Bouton d'ajout rapide
+Animations hover et micro-interactions
+🍽️ Système de produits
+Catégories principales (avec configurateur)
+Naan : Cheese, Garlic, Butter (fromage, légumes, viande)
+Burgers : Cheeseburger, Double Cheese, Chicken, Veggie (taille, viande, suppléments, frites, retrait d'ingrédients)
+Tacos : Classique, Poulet, Bœuf (taille M/L/XL, viande, suppléments)
+Hot Dogs : Classique, Cheese, Deluxe (viande, suppléments)
+Catégories simples (ajout direct)
+Boissons : Coca, Sprite, Eau, Jus, Thé glacé, Lassi
+Desserts : Tiramisu, Cheesecake, Brownie, Kulfi, Gulab Jamun, Muffin
+Sauces : Douce, Piquante, Ail, BBQ, Ketchup, Mayo, Curry, Menthe
+⚙️ Configurateur de produits
+Interface modale avec étapes de configuration
+Options dynamiques selon le type de produit :
+Tailles (M/L/XL pour tacos, Normal/Maxi pour burgers)
+Viandes (poulet, bœuf, poisson)
+Suppléments avec prix
+Sauces et fromages
+Frites (pour burgers)
+Boissons
+Retrait d'ingrédients (burgers)
+Calcul automatique du prix total
+Validation des choix obligatoires
+🛒 Système de panier
+Sidebar coulissante avec liste détaillée
+Gestion des quantités (+/- avec mise à jour automatique)
+Descriptions complètes des configurations
+Suppression d'articles individuelle
+Calcul en temps réel du total
+Vidage complet du panier
+💳 Système de commande
+Choix du mode de récupération
+🚚 Livraison : 25-35 min, +2,50€
+🏪 À emporter : 15-20 min, gratuit
+Processus en 3 étapes
+Informations (adaptées selon le mode)
+Livraison : adresse complète + contact
+Emporter : contact uniquement + adresse restaurant
+Paiement sécurisé avec validation
+Confirmation avec numéro de commande
+Fonctionnalités avancées
+Validation des formulaires en temps réel
+Formatage automatique (carte, date d'expiration)
+Récapitulatif détaillé avec frais
+Animation de traitement du paiement
+Confirmation finale avec détails
+🌙 Thème adaptatif
+Mode sombre/clair avec persistance localStorage
+Détection automatique des préférences système
+Transitions fluides entre les thèmes
+Contraste optimisé pour l'accessibilité
+📱 Fonctionnalités PWA
+Installation sur mobile/desktop
+Mode hors ligne avec cache
+Notifications push pour les commandes
+Indicateur de connexion
+Manifest complet avec icônes
+🎯 Expérience utilisateur
+Design Apple-level avec attention aux détails
+Animations subtiles et micro-interactions
+Responsive design mobile-first
+Performance optimisée avec lazy loading
+Accessibilité avec ARIA et navigation clavier
+🔧 Architecture technique
+Composants modulaires avec séparation des responsabilités
+Hooks personnalisés pour PWA et thèmes
+Context API pour l'état global
+TypeScript pour la sécurité des types
+Utilitaires PWA pour service worker et notifications
+L'application offre une expérience complète de commande de nourriture avec un design moderne, des fonctionnalités avancées et une attention particulière à l'expérience utilisateur.

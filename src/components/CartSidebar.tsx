@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { X, Plus, Minus, ShoppingCart, Trash2 } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import CheckoutModal from './CheckoutModal';
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -9,6 +11,7 @@ interface CartSidebarProps {
 
 const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
   const { state, removeItem, updateQuantity, clearCart } = useCart();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const formatItemDescription = (item: any) => {
     const parts = [];
@@ -124,10 +127,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
               
               <div className="space-y-2">
                 <button
-                  onClick={() => {
-                    // Handle checkout
-                    console.log('Proceeding to checkout...');
-                  }}
+                  onClick={() => setIsCheckoutOpen(true)}
                   className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition-colors"
                 >
                   Commander ({state.totalPrice.toFixed(2)}€)
@@ -144,6 +144,11 @@ const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
           )}
         </div>
       </div>
+      
+      <CheckoutModal 
+        isOpen={isCheckoutOpen} 
+        onClose={() => setIsCheckoutOpen(false)} 
+      />
     </div>
   );
 };
