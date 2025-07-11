@@ -271,40 +271,41 @@ const RestaurantDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+    <div className="h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200 flex flex-col overflow-hidden">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-3 sm:py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <Package className="h-8 w-8 text-green-500" />
-              <h1 className="text-gray-900 dark:text-white text-2xl font-bold">Dashboard Restaurant</h1>
+              <h1 className="text-gray-900 dark:text-white text-lg sm:text-2xl font-bold">Dashboard Restaurant</h1>
             </div>
-            <div className="hidden md:flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+            <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>En ligne</span>
             </div>
           </div>
           
           <div className="flex items-center space-x-4">
-            <div className="text-right">
-              <p className="text-gray-900 dark:text-white font-semibold">Naan Street</p>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">123 Rue de la Paix, 75001 Paris</p>
+            <div className="hidden sm:block text-right">
+              <p className="text-gray-900 dark:text-white font-semibold text-sm sm:text-base">Naan Street</p>
+              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">123 Rue de la Paix, 75001 Paris</p>
             </div>
             
             <button
               onClick={() => navigate('/client')}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              className="bg-green-500 hover:bg-green-600 active:bg-green-700 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors touch-manipulation"
             >
-              Mode Client
+              <span className="hidden sm:inline">Mode Client</span>
+              <span className="sm:hidden">👤</span>
             </button>
           </div>
         </div>
       </header>
 
-      <div className="p-6">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-4 sm:mb-6 flex-shrink-0">
           <StatsCard
             title="En attente"
             value={stats.pending}
@@ -340,8 +341,8 @@ const RestaurantDashboard = () => {
         </div>
 
         {/* Filters */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-6">
-          <div className="flex flex-wrap gap-2">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 sm:p-4 mb-4 sm:mb-6 flex-shrink-0">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {[
               { key: 'all', label: 'Toutes', count: orders.length },
               { key: 'pending', label: 'En attente', count: stats.pending },
@@ -352,7 +353,7 @@ const RestaurantDashboard = () => {
               <button
                 key={key}
                 onClick={() => setFilter(key as OrderStatus | 'all')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium transition-colors text-xs sm:text-sm touch-manipulation ${
                   filter === key
                     ? 'bg-green-500 text-white'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -365,11 +366,7 @@ const RestaurantDashboard = () => {
         </div>
 
         {/* Orders Grid */}
-<div
-  className={`overflow-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-2 ${
-    filteredOrders.length === 0 ? 'h-0' : 'h-[54vh]'
-  }`}
->
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 pb-6">
           {filteredOrders.map((order) => (
             <OrderCard
               key={order.id}
@@ -384,7 +381,7 @@ const RestaurantDashboard = () => {
         </div>
 
         {filteredOrders.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 flex-shrink-0">
             <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-gray-900 dark:text-white text-lg font-semibold mb-2">
               Aucune commande

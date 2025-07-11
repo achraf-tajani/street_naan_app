@@ -29,17 +29,17 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, value, icon: Icon, color, 
   const { baseClasses, iconColor } = getColorClasses();
 
   return (
-    <div className={`${baseClasses} rounded-lg border p-4 transition-all duration-200 hover:shadow-md ${urgent ? 'animate-pulse' : ''}`}>
+    <div className={`${baseClasses} rounded-lg border p-3 sm:p-4 transition-all duration-200 hover:shadow-md ${urgent ? 'animate-pulse' : ''}`}>
       <div className="flex items-center justify-between">
         <div>
-          <p className={`text-sm font-medium ${urgent ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}`}>
+          <p className={`text-xs sm:text-sm font-medium ${urgent ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}`}>
             {title}
           </p>
-          <p className={`text-2xl font-bold ${urgent ? 'text-red-700 dark:text-red-300' : 'text-gray-900 dark:text-white'}`}>
+          <p className={`text-xl sm:text-2xl font-bold ${urgent ? 'text-red-700 dark:text-red-300' : 'text-gray-900 dark:text-white'}`}>
             {value}
           </p>
         </div>
-        <Icon className={`h-8 w-8 ${iconColor}`} />
+        <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${iconColor}`} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FoodCard from './FoodCard';
-import ProductConfigurator from './ProductConfigurator';
+import FoodCard from './utils/FoodCard';
+import ProductConfigurator from './utils/ProductConfigurator';
 
 const TacosSection = () => {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -31,9 +31,9 @@ const TacosSection = () => {
 
   return (
     <>
-      <div className="p-6">
-        <h2 className="text-gray-900 dark:text-white text-2xl font-bold mb-6">Tacos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="p-4 sm:p-6">
+        <h2 className="text-gray-900 dark:text-white text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Tacos</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {tacosProducts.map((food) => (
             <FoodCard 
               key={food.id} 

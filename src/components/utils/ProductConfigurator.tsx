@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Plus, Minus } from 'lucide-react';
-import { useCart } from '../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 
 interface ProductConfiguratorProps {
   isOpen: boolean;
@@ -209,42 +209,42 @@ const ProductConfigurator: React.FC<ProductConfiguratorProps> = ({ isOpen, onClo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto transition-colors duration-200">
-        <div className="sticky top-0 bg-white dark:bg-gray-800 p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end sm:items-center justify-center z-50 p-0 sm:p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-lg w-full sm:max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto transition-colors duration-200">
+        <div className="sticky top-0 bg-white dark:bg-gray-800 p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <span className="text-3xl">{product.emoji}</span>
-            <h2 className="text-gray-900 dark:text-white text-2xl font-bold">{product.name}</h2>
+            <span className="text-2xl sm:text-3xl">{product.emoji}</span>
+            <h2 className="text-gray-900 dark:text-white text-xl sm:text-2xl font-bold">{product.name}</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors"
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors p-2 touch-manipulation"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           {/* Size Selection - Not for Naan */}
           {product.type !== 'naan' && (
             <div>
-            <h3 className="text-gray-900 dark:text-white text-lg font-semibold mb-3">
+            <h3 className="text-gray-900 dark:text-white text-base sm:text-lg font-semibold mb-3">
               {product.type === 'burger' ? 'Format' : 'Taille'}
             </h3>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
               {getCurrentSizes().map((size) => (
                 <button
                   key={size.id}
                   onClick={() => setSelectedSize(size.id)}
-                  className={`p-3 rounded-lg border-2 transition-colors duration-200 ${
+                  className={`p-2.5 sm:p-3 rounded-lg border-2 transition-colors duration-200 touch-manipulation ${
                     selectedSize === size.id
                       ? 'border-green-500 bg-green-500/20 text-green-400'
                       : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500 bg-white dark:bg-gray-700'
                   }`}
                 >
-                  <div className="font-semibold">{size.name}</div>
+                  <div className="font-semibold text-sm sm:text-base">{size.name}</div>
                   {size.price > 0 && (
-                    <div className="text-sm">+{size.price}€</div>
+                    <div className="text-xs sm:text-sm">+{size.price}€</div>
                   )}
                 </button>
               ))}
@@ -254,21 +254,21 @@ const ProductConfigurator: React.FC<ProductConfiguratorProps> = ({ isOpen, onClo
 
           {/* Meat Selection */}
           <div>
-            <h3 className="text-gray-900 dark:text-white text-lg font-semibold mb-3">Viande</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <h3 className="text-gray-900 dark:text-white text-base sm:text-lg font-semibold mb-3">Viande</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {getCurrentMeats().map((meat) => (
                 <button
                   key={meat.id}
                   onClick={() => setSelectedMeat(meat.id)}
-                  className={`p-3 rounded-lg border-2 transition-colors duration-200 ${
+                  className={`p-2.5 sm:p-3 rounded-lg border-2 transition-colors duration-200 touch-manipulation ${
                     selectedMeat === meat.id
                       ? 'border-green-500 bg-green-500/20 text-green-400'
                       : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500 bg-white dark:bg-gray-700'
                   }`}
                 >
-                  <div className="font-semibold">{meat.name}</div>
+                  <div className="font-semibold text-sm sm:text-base">{meat.name}</div>
                   {meat.price > 0 && (
-                    <div className="text-sm">+{meat.price}€</div>
+                    <div className="text-xs sm:text-sm">+{meat.price}€</div>
                   )}
                 </button>
               ))}
@@ -420,27 +420,27 @@ const ProductConfigurator: React.FC<ProductConfiguratorProps> = ({ isOpen, onClo
           </div>
 
           {/* Quantity and Add to Cart */}
-          <div className="sticky bottom-0 bg-white dark:bg-gray-800 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="sticky bottom-0 bg-white dark:bg-gray-800 pt-4 sm:pt-6 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-4">
-                <span className="text-gray-900 dark:text-white font-semibold">Quantité:</span>
+                <span className="text-gray-900 dark:text-white font-semibold text-sm sm:text-base">Quantité:</span>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-white p-2 rounded-full transition-colors"
+                    className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 text-gray-700 dark:text-white p-2 rounded-full transition-colors touch-manipulation"
                   >
                     <Minus className="h-4 w-4" />
                   </button>
-                  <span className="text-gray-900 dark:text-white font-bold text-lg w-8 text-center">{quantity}</span>
+                  <span className="text-gray-900 dark:text-white font-bold text-base sm:text-lg w-8 text-center">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-white p-2 rounded-full transition-colors"
+                    className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500 text-gray-700 dark:text-white p-2 rounded-full transition-colors touch-manipulation"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
                 </div>
               </div>
-              <div className="text-gray-900 dark:text-white text-2xl font-bold">
+              <div className="text-gray-900 dark:text-white text-xl sm:text-2xl font-bold">
                 {calculateTotal().toFixed(2)}€
               </div>
             </div>
@@ -479,7 +479,7 @@ const ProductConfigurator: React.FC<ProductConfiguratorProps> = ({ isOpen, onClo
                 !selectedSauce || 
                 (product.type === 'burger' && !selectedFries)
               }
-              className="w-full bg-green-500 hover:bg-green-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 rounded-lg font-semibold text-lg transition-colors"
+              className="w-full bg-green-500 hover:bg-green-600 active:bg-green-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors touch-manipulation"
             >
               Ajouter au panier
             </button>
