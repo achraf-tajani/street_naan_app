@@ -30,7 +30,7 @@ const showUpdateNotification = () => {
   if (Notification.permission === 'granted') {
     new Notification('Street Naan Update Available', {
       body: 'A new version is available. Refresh to update.',
-      icon: '/icons/icon-192x192.png',
+      icon: '/icons/pwa-192x192.png',
       tag: 'update-available'
     });
   }
@@ -92,4 +92,38 @@ export const clearCache = async () => {
 export const isPWA = () => {
   return window.matchMedia('(display-mode: standalone)').matches ||
          (window.navigator as any).standalone === true;
+};
+export const registerServiceWorker = async (onUpdateFound?: () => void) => {
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js');
+
+      console.log('[SW] Registered:', registration);
+
+      registration.addEventListener('updatefound', () => {
+        console.log('[SW] Update found');
+        const newWorker = registration.installing;
+
+        if (newWorker) {
+          newWorker.addEventListener('statechange', () => {
+            console.log('[SW] New worker state:', newWorker.state);
+            if (newWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // Nouvelle version dispo (ancienne version contrôle déjà la page)
+                console.log('[SW] New content available; please refresh.');
+                if (typeof onUpdateFound === 'function') onUpdateFound();
+              } else {
+                // Pas encore de version antérieure — c’est la première install
+                console.log('[SW] Content cached for offline use.');
+              }
+            }
+          });
+        }
+      });
+
+      return registration;
+    } catch (error) {
+      console.error('[SW] Registration failed:', error);
+    }
+  }
 };

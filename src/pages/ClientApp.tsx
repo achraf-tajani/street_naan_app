@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect,useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/layouts/Header';
 import CartSidebar from '../components/layouts/CartSidebar';
@@ -11,12 +10,19 @@ import HotDogSection from '../components/hotdog/HotDogSection';
 import BoissonsSection from '../components/boissons/BoissonsSection';
 import DessertsSection from '../components/desserts/DessertsSection';
 import SaucesSection from '../components/sauces/SaucesSection';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
+import { registerServiceWorker } from '../utils/pwaUtils';
 
 function ClientApp() {
   const [activeCategory, setActiveCategory] = useState('naan');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    registerServiceWorker(() => {
+      setUpdateAvailable(true);
+    });
+  }, []);
   const renderActiveSection = () => {
     switch (activeCategory) {
       case 'naan':
@@ -41,7 +47,24 @@ function ClientApp() {
   return (
     <div className="h-full flex flex-col overflow-hidden relative bg-gray-50 dark:bg-gray-900">
       <Header onCartClick={() => setIsCartOpen(true)} />
-      
+      <PWAInstallPrompt />
+        {updateAvailable && (
+        <div className="fixed bottom-20 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-yellow-400 text-black border border-yellow-600 rounded-lg p-4 shadow-lg z-50">
+          <p className="mb-2 font-semibold">Nouvelle version disponible !</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded"
+          >
+            Recharger
+          </button>
+          <button
+            onClick={() => setUpdateAvailable(false)}
+            className="ml-2 text-black underline"
+          >
+            Ignorer
+          </button>
+        </div>
+      )}
       {/* Restaurant Mode Toggle */}
       <button
         onClick={() => navigate('/restaurant')}
